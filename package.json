@@ -1,7 +1,7 @@
 {
     "name": "mlf-cache",
     "description": "清除前端缓存,在JS后面加t=1112341313时间戳",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "homepage": "https://github.com/yangxiaoxiao23/mlf-cache.git",
     "author": {
         "name": "YHB",
