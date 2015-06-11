@@ -30,12 +30,13 @@ module.exports = function(grunt) {
 				var reg = new RegExp('".*'+assetUrl+'.*"','g');
 				var fullAssetUrl = reg.exec(data).toString();
 				var assetName=fullAssetUrl.substring(fullAssetUrl.indexOf(assetUrl),fullAssetUrl.length-1);
-				var newurl = getNewAssetsUrl(assetName, md5sum.digest('hex'));
+                var md5 = md5sum.digest('hex');
+				var newurl = getNewAssetsUrl(assetName, md5);
 				var newdata = data.replace(assetName, newurl);
 				if (grunt.file.write(fileSrc, newdata)) {
-					grunt.log.success(fileSrc + ' 替换成功');
+					grunt.log.success(fileSrc + ' 添加md5: ' + md5 + ' 成功');
 				} else {
-					grunt.log.error(fileSrc + ' 替换失败');
+					grunt.log.error(fileSrc + ' 添加md5失败');
 				}
 			} else {
 				grunt.log.error('没有发现要替换的内容 ' + fileSrc);
@@ -47,7 +48,14 @@ module.exports = function(grunt) {
 		var options = this.options({
 
 		});
+
 		var assetUrl = this.data.assetUrl;
+        var assetUrls = [];
+        if(assetUrl instanceof String){
+            assetUrls = [assetUrl];
+        } else if(assetUrl instanceof Array){
+            assetUrls=  assetUrl;
+        }
 		this.files.forEach(function(f) {
 			var src = f.src.filter(function(filepath) {
 				if (!grunt.file.exists(filepath)) {
@@ -55,7 +63,10 @@ module.exports = function(grunt) {
 					return false;
 				} else {
 					grunt.log.success('源文件 "' + filepath + '" 发现.');
-					replaceAssets(filepath, assetUrl);
+                    for(var i= 0,len=assetUrls.length;i<len;i++){
+                        var url = assetUrls[i];
+                        replaceAssets(filepath, url);
+                    }
 					return true;
 				}
 			});
