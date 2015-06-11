@@ -1,7 +1,7 @@
 {
     "name": "mlf-cache",
     "description": "清除前端缓存,在JS后面加t=1112341313时间戳",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "homepage": "https://github.com/yangxiaoxiao23/mlf-cache.git",
     "author": {
         "name": "YHB",
@@ -35,7 +35,7 @@
     },
     "keywords": ["mlf-cache"],
     "files": ["tasks", "LICENSE-MIT"],
-    "_id": "mlf-cache@0.1.1",
+    "_id": "mlf-cache@0.1.2",
     "_npmVersion": "1.3.26",
     "_npmUser": {
         "name": "yanghanbin",

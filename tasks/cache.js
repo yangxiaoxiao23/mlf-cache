@@ -44,9 +44,9 @@ module.exports = function(grunt) {
                 var newurl = getNewAssetsUrl(assetName, md5);
                 var newdata = data.replace(assetName, newurl);
                 if (grunt.file.write(fileSrc, newdata)) {
-                    grunt.log.success(fileSrc + ' 添加md5: ' + md5 + ' 成功');
+                    grunt.log.success(replaceUrl + ' 添加md5: ' + md5 + ' 成功');
                 } else {
-                    grunt.log.error(fileSrc + ' 添加md5失败');
+                    grunt.log.error(replaceUrl + ' 添加md5失败');
                 }
             } else {
                 grunt.log.error('没有发现要替换的内容 ' + fileSrc);
